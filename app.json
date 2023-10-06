@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile-condominium",
-    "slug": "mobile-condominium",
+    "name": "condominium_front_end",
+    "slug": "condominium_front_end",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
