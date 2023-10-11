@@ -16,10 +16,10 @@ export default function Register() {
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(""); // Mensagem de erro
+  const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Morador"); // Inicialmente definido como "Morador"
-  const [selectedFunction, setSelectedFunction] = useState(""); // Inicialmente não selecionado
+  const [selectedOption, setSelectedOption] = useState("Morador");
+  const [selectedFunction, setSelectedFunction] = useState("");
 
   const options = ["Morador", "Funcionário"];
   const functions = [
@@ -68,7 +68,7 @@ export default function Register() {
                 ]}
                 onPress={() => {
                   setSelectedOption(option);
-                  setSelectedFunction(""); // Redefinir a função selecionada
+                  setSelectedFunction("");
                 }}
               >
                 <Text
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 4,
     paddingVertical: 8,
-    marginTop: 14,
+    marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -235,6 +235,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     alignSelf: "flex-start",
+    marginTop: 10,
+    marginBottom: 10,
   },
   segmentedControl: {
     flexDirection: "row",

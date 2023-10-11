@@ -22,8 +22,8 @@ export default function SignIn() {
   };
 
   const handleSignIn = () => {
-    setEmailError(""); // Limpa a mensagem de erro do email
-    setPasswordError(""); // Limpa a mensagem de erro da senha
+    setEmailError("");
+    setPasswordError("");
 
     if (!email.trim()) {
       setEmailError("Preencha o campo corretamente");
@@ -34,8 +34,6 @@ export default function SignIn() {
     }
 
     if (!emailError && !passwordError) {
-      // Se não houver mensagens de erro, continue com o processo de autenticação
-      // Resto do código de autenticação
     }
   };
 
@@ -182,10 +180,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   errorInput: {
-    borderBottomColor: "red", // Muda a cor da borda da caixa de texto para vermelho
+    borderBottomColor: "red",
   },
   errorMessage: {
-    color: "red", // Define a cor do texto de erro como vermelho
+    color: "red",
     marginTop: 5,
     fontSize: 16,
   },

@@ -9,8 +9,8 @@ export default function Welcome() {
   return (
     <View style={styles.container}>
       <Animatable.View
-        animation="fadeInDown" // Animar de cima para baixo
-        delay={500} // Atraso de 500ms
+        animation="fadeInDown"
+        delay={500}
         style={styles.containerLogo}
       >
         <Image
