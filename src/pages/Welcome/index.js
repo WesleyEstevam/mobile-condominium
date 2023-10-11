@@ -8,13 +8,17 @@ export default function Welcome() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
+      <Animatable.View
+        animation="fadeInDown" // Animar de cima para baixo
+        delay={500} // Atraso de 500ms
+        style={styles.containerLogo}
+      >
         <Image
           source={require("../../assets/LOGO_TRANSPARENTE.png")}
           style={{ width: "100%" }}
           resizeMode="contain"
         />
-      </View>
+      </Animatable.View>
 
       <Animatable.View
         delay={1000}
