@@ -13,9 +13,30 @@ export default function SignIn() {
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSignIn = () => {
+    setEmailError(""); // Limpa a mensagem de erro do email
+    setPasswordError(""); // Limpa a mensagem de erro da senha
+
+    if (!email.trim()) {
+      setEmailError("Preencha o campo corretamente");
+    }
+
+    if (!password.trim()) {
+      setPasswordError("Preencha o campo corretamente");
+    }
+
+    if (!emailError && !passwordError) {
+      // Se não houver mensagens de erro, continue com o processo de autenticação
+      // Resto do código de autenticação
+    }
   };
 
   return (
@@ -30,16 +51,28 @@ export default function SignIn() {
 
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.title}>Email</Text>
-        <TextInput placeholder="Digite um email..." style={styles.input} />
+        <TextInput
+          placeholder="Digite um email..."
+          style={[styles.input, emailError && styles.errorInput]}
+          onChangeText={(text) => {
+            setEmailError("");
+            setEmail(text);
+          }}
+        />
+        <Text style={styles.errorMessage}>{emailError}</Text>
 
         <Text style={styles.title}>Senha</Text>
         <TextInput
           placeholder="Sua senha..."
-          style={styles.input}
+          style={[styles.input, passwordError && styles.errorInput]}
           secureTextEntry={!showPassword}
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => {
+            setPasswordError("");
+            setPassword(text);
+          }}
         />
+        <Text style={styles.errorMessage}>{passwordError}</Text>
 
         <TouchableOpacity
           style={styles.toggleButton}
@@ -51,7 +84,7 @@ export default function SignIn() {
         </TouchableOpacity>
 
         <View style={styles.bottomButtonsContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSignIn}>
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
 
@@ -124,7 +157,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
   toggleButtonText: {
     marginTop: 5,
     marginBottom: 5,
@@ -148,5 +180,13 @@ const styles = StyleSheet.create({
   goBackButtonText: {
     fontSize: 16,
     fontWeight: "bold",
+  },
+  errorInput: {
+    borderBottomColor: "red", // Muda a cor da borda da caixa de texto para vermelho
+  },
+  errorMessage: {
+    color: "red", // Define a cor do texto de erro como vermelho
+    marginTop: 5,
+    fontSize: 16,
   },
 });
