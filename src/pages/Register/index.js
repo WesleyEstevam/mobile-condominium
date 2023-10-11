@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +18,17 @@ export default function Register() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [passwordError, setPasswordError] = useState(""); // Mensagem de erro
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Morador"); // Inicialmente definido como "Morador"
+  const [selectedFunction, setSelectedFunction] = useState(""); // Inicialmente não selecionado
+
+  const options = ["Morador", "Funcionário"];
+  const functions = [
+    "Segurança",
+    "Zelador",
+    "Jardineiro",
+    "Manutenção",
+    "Síndico",
+  ];
 
   const handleRepeatPasswordChange = (text) => {
     setRepeatPassword(text);
@@ -44,6 +56,63 @@ export default function Register() {
         </Animatable.View>
 
         <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+          <Text style={styles.title}>Selecione o tipo:</Text>
+          <View style={styles.segmentedControl}>
+            {options.map((option) => (
+              <TouchableOpacity
+                key={option}
+                style={[
+                  styles.segmentedControlItem,
+                  option === selectedOption &&
+                    styles.segmentedControlItemSelected,
+                ]}
+                onPress={() => {
+                  setSelectedOption(option);
+                  setSelectedFunction(""); // Redefinir a função selecionada
+                }}
+              >
+                <Text
+                  style={[
+                    styles.segmentedControlText,
+                    option === selectedOption &&
+                      styles.segmentedControlTextSelected,
+                  ]}
+                >
+                  {option}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {selectedOption === "Funcionário" && (
+            <View>
+              <Text style={styles.title}>Tipo de Funcionário:</Text>
+              <View style={styles.segmentedControl}>
+                {functions.map((func) => (
+                  <TouchableOpacity
+                    key={func}
+                    style={[
+                      styles.segmentedControlItem,
+                      func === selectedFunction &&
+                        styles.segmentedControlItemSelected,
+                    ]}
+                    onPress={() => setSelectedFunction(func)}
+                  >
+                    <Text
+                      style={[
+                        styles.segmentedControlText,
+                        func === selectedFunction &&
+                          styles.segmentedControlTextSelected,
+                      ]}
+                    >
+                      {func}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          )}
+
           <Text style={styles.title}>Nome Completo</Text>
           <TextInput placeholder="Registrar" style={styles.input} />
 
@@ -109,8 +178,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   containerHeader: {
-    marginTop: "14%",
-    marginBottom: "8%",
+    marginTop: "10%",
+    marginBottom: "2%",
     paddingStart: "5%",
   },
   message: {
@@ -159,11 +228,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  backButtonText: {
+  backButton: {
     marginTop: 14,
-    marginBottom: 30,
+  },
+  backButtonText: {
     fontWeight: "bold",
     fontSize: 18,
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
+  },
+  segmentedControl: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 10,
+  },
+  segmentedControlItem: {
+    flex: 1,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 8,
+    alignItems: "center",
+  },
+  segmentedControlText: {
+    color: "black",
+  },
+  segmentedControlItemSelected: {
+    backgroundColor: "green",
+  },
+  segmentedControlTextSelected: {
+    color: "white",
   },
 });
