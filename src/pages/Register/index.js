@@ -5,8 +5,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  ScrollView,
-  FlatList,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
@@ -19,16 +17,9 @@ export default function Register() {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Morador");
-  const [selectedFunction, setSelectedFunction] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const options = ["Morador", "Funcionário"];
-  const functions = [
-    "Segurança",
-    "Zelador",
-    "Jardineiro",
-    "Manutenção",
-    "Síndico",
-  ];
 
   const handleRepeatPasswordChange = (text) => {
     setRepeatPassword(text);
@@ -37,6 +28,18 @@ export default function Register() {
       setPasswordError("Senhas diferentes");
     } else {
       setPasswordError("");
+    }
+  };
+
+  const formatPhoneNumber = (text) => {
+    const numericText = text.replace(/\D/g, "");
+
+    if (numericText.length <= 2) {
+      setPhoneNumber(numericText);
+    } else {
+      const formattedText =
+        `(${numericText.substring(0, 2)}) ` + numericText.substring(2);
+      setPhoneNumber(formattedText);
     }
   };
 
@@ -68,7 +71,6 @@ export default function Register() {
                 ]}
                 onPress={() => {
                   setSelectedOption(option);
-                  setSelectedFunction("");
                 }}
               >
                 <Text
@@ -84,35 +86,6 @@ export default function Register() {
             ))}
           </View>
 
-          {selectedOption === "Funcionário" && (
-            <View>
-              <Text style={styles.title}>Tipo de Funcionário:</Text>
-              <View style={styles.segmentedControl}>
-                {functions.map((func) => (
-                  <TouchableOpacity
-                    key={func}
-                    style={[
-                      styles.segmentedControlItem,
-                      func === selectedFunction &&
-                        styles.segmentedControlItemSelected,
-                    ]}
-                    onPress={() => setSelectedFunction(func)}
-                  >
-                    <Text
-                      style={[
-                        styles.segmentedControlText,
-                        func === selectedFunction &&
-                          styles.segmentedControlTextSelected,
-                      ]}
-                    >
-                      {func}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            </View>
-          )}
-
           <Text style={styles.title}>Nome Completo</Text>
           <TextInput placeholder="Registrar" style={styles.input} />
 
@@ -125,13 +98,15 @@ export default function Register() {
 
           <Text style={styles.title}>Telefone</Text>
           <TextInput
-            placeholder="Registrar"
+            placeholder="(99)99999-9999"
             style={styles.input}
             keyboardType="numeric"
+            value={phoneNumber}
+            onChangeText={formatPhoneNumber}
           />
 
           <Text style={styles.title}>Email</Text>
-          <TextInput placeholder="Registrar" style={styles.input} />
+          <TextInput placeholder="nome@email.com" style={styles.input} />
 
           <Text style={styles.title}>Senha</Text>
           <TextInput
