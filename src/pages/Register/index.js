@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import styles from "./styles";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -89,28 +84,39 @@ export default function Register() {
           <Text style={styles.title}>Nome Completo</Text>
           <TextInput placeholder="Registrar" style={styles.input} />
 
-          <Text style={styles.title}>CPF</Text>
+          <Text style={styles.title}>Documento</Text>
           <TextInput
             placeholder="Registrar"
             style={styles.input}
             keyboardType="numeric"
           />
 
-          <Text style={styles.title}>Telefone</Text>
-          <TextInput
-            placeholder="(99)99999-9999"
-            style={styles.input}
-            keyboardType="numeric"
-            value={phoneNumber}
-            onChangeText={formatPhoneNumber}
-          />
+          <Text style={styles.title}>Empresa</Text>
+          <TextInput placeholder="Ifood" style={styles.input} />
+
+          <Text style={styles.title}>Nome do Pai</Text>
+          <TextInput placeholder="Sr.Antonio" style={styles.input} />
+
+          <Text style={styles.title}>Nome da Mãe</Text>
+          <TextInput placeholder="Dona Maria" style={styles.input} />
 
           <Text style={styles.title}>Email</Text>
           <TextInput placeholder="nome@email.com" style={styles.input} />
 
+          <Text style={styles.title}>Quadra</Text>
+          <TextInput placeholder="Ex: 10" style={styles.input} />
+
+          <Text style={styles.title}>Lote</Text>
+          <TextInput placeholder="Ex: 2" style={styles.input} />
+
+          <Text style={styles.title}>Nome </Text>
+          <TextInput placeholder="" style={styles.input} />
+
+          <Text style={styles.title}>Apartamento</Text>
+          <TextInput placeholder="Ex: 105" style={styles.input} />
+
           <Text style={styles.title}>Senha</Text>
           <TextInput
-            placeholder="Registrar"
             style={styles.input}
             secureTextEntry={!showPassword}
             value={password}
@@ -119,7 +125,6 @@ export default function Register() {
 
           <Text style={styles.title}>Repetir Senha</Text>
           <TextInput
-            placeholder="Registrar"
             style={styles.input}
             secureTextEntry={true}
             onChangeText={handleRepeatPasswordChange}
@@ -145,93 +150,3 @@ export default function Register() {
     </KeyboardAwareScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "green",
-    width: "100%",
-  },
-  containerHeader: {
-    marginTop: "10%",
-    marginBottom: "2%",
-    paddingStart: "5%",
-  },
-  message: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  containerForm: {
-    backgroundColor: "#fff",
-    flex: 1,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    paddingStart: "5%",
-    paddingEnd: "5%",
-  },
-  title: {
-    fontSize: 20,
-    marginTop: 28,
-  },
-  input: {
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 12,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: "green",
-    width: "100%",
-    borderRadius: 4,
-    paddingVertical: 8,
-    marginTop: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  errorText: {
-    color: "red",
-    marginTop: 5,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  backButton: {
-    marginTop: 14,
-  },
-  backButtonText: {
-    fontWeight: "bold",
-    fontSize: 18,
-    alignSelf: "flex-start",
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  segmentedControl: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 10,
-  },
-  segmentedControlItem: {
-    flex: 1,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    padding: 8,
-    alignItems: "center",
-  },
-  segmentedControlText: {
-    color: "black",
-  },
-  segmentedControlItemSelected: {
-    backgroundColor: "green",
-  },
-  segmentedControlTextSelected: {
-    color: "white",
-  },
-});
