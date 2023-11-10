@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
+import axios from "axios";
+import { baseURL } from "../../api/baseURL";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -25,7 +27,20 @@ export default function Register() {
       setPasswordError("");
     }
   };
+  //INTEGRAÇÃO COM API - ERROR
+  useEffect(() => {
+    axios
+      .get(`${baseURL}login`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(`Ops! Deu erro ${error}`);
+        console.error(error);
+      });
+  }, []);
 
+  /*
   const formatPhoneNumber = (text) => {
     const numericText = text.replace(/\D/g, "");
 
@@ -37,7 +52,7 @@ export default function Register() {
       setPhoneNumber(formattedText);
     }
   };
-
+*/
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.scrollContainer}
