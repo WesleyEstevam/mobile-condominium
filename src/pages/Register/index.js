@@ -27,7 +27,7 @@ export default function Register() {
       setPasswordError("");
     }
   };
-  //INTEGRAÇÃO COM API - ERROR
+
   useEffect(() => {
     axios
       .get(`${baseURL}login`)
@@ -40,19 +40,6 @@ export default function Register() {
       });
   }, []);
 
-  /*
-  const formatPhoneNumber = (text) => {
-    const numericText = text.replace(/\D/g, "");
-
-    if (numericText.length <= 2) {
-      setPhoneNumber(numericText);
-    } else {
-      const formattedText =
-        `(${numericText.substring(0, 2)}) ` + numericText.substring(2);
-      setPhoneNumber(formattedText);
-    }
-  };
-*/
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.scrollContainer}
@@ -110,10 +97,10 @@ export default function Register() {
           <TextInput placeholder="Ifood" style={styles.input} />
 
           <Text style={styles.title}>Nome do Pai</Text>
-          <TextInput placeholder="Sr.Antonio" style={styles.input} />
+          <TextInput placeholder="Sr. Antonio" style={styles.input} />
 
           <Text style={styles.title}>Nome da Mãe</Text>
-          <TextInput placeholder="Dona Maria" style={styles.input} />
+          <TextInput placeholder="Sra. Maria" style={styles.input} />
 
           <Text style={styles.title}>Email</Text>
           <TextInput placeholder="nome@email.com" style={styles.input} />
