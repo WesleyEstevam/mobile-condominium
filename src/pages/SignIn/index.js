@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
+import styles from "./styles";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -102,6 +103,13 @@ export default function SignIn() {
           onPress={() => navigation.navigate("Welcome")}
         >
           <Text style={styles.goBackButtonText}>Voltar ao início</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Text style={styles.buttonText}>Avançar</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
