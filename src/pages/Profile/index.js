@@ -76,11 +76,6 @@ export default function Profile() {
           <Text style={styles.sidebarButtonText}>Entradas e Saídas</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.mainContent}>
-        <Text style={styles.mainContentText}>Bem-vindo ao seu Perfil!</Text>
-        {/* Adicione aqui qualquer conteúdo adicional que deseja exibir */}
-      </View>
     </View>
   );
 }
