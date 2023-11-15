@@ -26,7 +26,7 @@ export default function PainelScreen() {
     if (anterior === "") return "N/A";
     const variacao =
       ((parseFloat(atual) - parseFloat(anterior)) / parseFloat(anterior)) * 100;
-    return variacao.toFixed(2) + "%";
+    return variacao.toFixed(2);
   };
 
   const atualizarValores = () => {
@@ -84,21 +84,65 @@ export default function PainelScreen() {
         </TouchableOpacity>
       </View>
 
-      <Text>
+      <Text
+        style={{
+          color:
+            calcularVariacaoPercentual(numeroImoveis, anteriorImoveis) < 0
+              ? "red"
+              : calcularVariacaoPercentual(numeroImoveis, anteriorImoveis) > 0
+              ? "blue"
+              : "black",
+        }}
+      >
         Variação Imóveis:{" "}
-        {calcularVariacaoPercentual(numeroImoveis, anteriorImoveis)}
+        {calcularVariacaoPercentual(numeroImoveis, anteriorImoveis)}%
       </Text>
-      <Text>
+      <Text
+        style={{
+          color:
+            calcularVariacaoPercentual(numeroMoradores, anteriorMoradores) < 0
+              ? "red"
+              : calcularVariacaoPercentual(numeroMoradores, anteriorMoradores) >
+                0
+              ? "blue"
+              : "black",
+        }}
+      >
         Variação Moradores:{" "}
-        {calcularVariacaoPercentual(numeroMoradores, anteriorMoradores)}
+        {calcularVariacaoPercentual(numeroMoradores, anteriorMoradores)}%
       </Text>
-      <Text>
+      <Text
+        style={{
+          color:
+            calcularVariacaoPercentual(numeroCondominio, anteriorCondominio) < 0
+              ? "red"
+              : calcularVariacaoPercentual(
+                  numeroCondominio,
+                  anteriorCondominio
+                ) > 0
+              ? "blue"
+              : "black",
+        }}
+      >
         Variação Condomínio:{" "}
-        {calcularVariacaoPercentual(numeroCondominio, anteriorCondominio)}
+        {calcularVariacaoPercentual(numeroCondominio, anteriorCondominio)}%
       </Text>
-      <Text>
+      <Text
+        style={{
+          color:
+            calcularVariacaoPercentual(numeroOcorrencias, anteriorOcorrencias) <
+            0
+              ? "red"
+              : calcularVariacaoPercentual(
+                  numeroOcorrencias,
+                  anteriorOcorrencias
+                ) > 0
+              ? "blue"
+              : "black",
+        }}
+      >
         Variação Ocorrências:{" "}
-        {calcularVariacaoPercentual(numeroOcorrencias, anteriorOcorrencias)}
+        {calcularVariacaoPercentual(numeroOcorrencias, anteriorOcorrencias)}%
       </Text>
     </View>
   );
