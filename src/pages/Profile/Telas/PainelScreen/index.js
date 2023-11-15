@@ -1,24 +1,31 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
 export default function PainelScreen() {
   const navigation = useNavigation();
 
-  const [numeroImoveis, setNumeroImoveis] = useState(0);
-  const [numeroMoradores, setNumeroMoradores] = useState(0);
-  const [numeroCondominio, setNumeroCondominio] = useState(0);
-  const [numeroOcorrencias, setNumeroOcorrencias] = useState(0);
+  const [numeroImoveis, setNumeroImoveis] = useState("");
+  const [numeroMoradores, setNumeroMoradores] = useState("");
+  const [numeroCondominio, setNumeroCondominio] = useState("");
+  const [numeroOcorrencias, setNumeroOcorrencias] = useState("");
 
-  const [anteriorImoveis, setAnteriorImoveis] = useState(0);
-  const [anteriorMoradores, setAnteriorMoradores] = useState(0);
-  const [anteriorCondominio, setAnteriorCondominio] = useState(0);
-  const [anteriorOcorrencias, setAnteriorOcorrencias] = useState(0);
+  const [anteriorImoveis, setAnteriorImoveis] = useState("");
+  const [anteriorMoradores, setAnteriorMoradores] = useState("");
+  const [anteriorCondominio, setAnteriorCondominio] = useState("");
+  const [anteriorOcorrencias, setAnteriorOcorrencias] = useState("");
 
   const calcularVariacaoPercentual = (atual, anterior) => {
-    if (anterior === 0) return "N/A";
-    const variacao = ((atual - anterior) / anterior) * 100;
+    if (anterior === "") return "N/A";
+    const variacao =
+      ((parseFloat(atual) - parseFloat(anterior)) / parseFloat(anterior)) * 100;
     return variacao.toFixed(2) + "%";
   };
 
@@ -31,14 +38,51 @@ export default function PainelScreen() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={atualizarValores} style={styles.button}>
-        <Text style={styles.buttonText}>Atualizar Valores</Text>
-      </TouchableOpacity>
+      <Text>Número de Imóveis:</Text>
+      <TextInput
+        keyboardType="numeric"
+        placeholder="Número de imóveis"
+        value={numeroImoveis}
+        onChangeText={(text) => setNumeroImoveis(text)}
+        onFocus={() => setNumeroImoveis("")}
+        style={styles.input}
+      />
 
-      <Text>Imóveis: {numeroImoveis}</Text>
-      <Text>Moradores: {numeroMoradores}</Text>
-      <Text>Condomínio: {numeroCondominio}</Text>
-      <Text>Ocorrências: {numeroOcorrencias}</Text>
+      <Text>Número de Moradores:</Text>
+      <TextInput
+        keyboardType="numeric"
+        placeholder="Número de moradores"
+        value={numeroMoradores}
+        onChangeText={(text) => setNumeroMoradores(text)}
+        onFocus={() => setNumeroMoradores("")}
+        style={styles.input}
+      />
+
+      <Text>Número de Condomínio:</Text>
+      <TextInput
+        keyboardType="numeric"
+        placeholder="Mensalidade do Condomínio"
+        value={numeroCondominio}
+        onChangeText={(text) => setNumeroCondominio(text)}
+        onFocus={() => setNumeroCondominio("")}
+        style={styles.input}
+      />
+
+      <Text>Número de Ocorrências:</Text>
+      <TextInput
+        keyboardType="numeric"
+        placeholder="Número de ocorrências"
+        value={numeroOcorrencias}
+        onChangeText={(text) => setNumeroOcorrencias(text)}
+        onFocus={() => setNumeroOcorrencias("")}
+        style={styles.input}
+      />
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={atualizarValores} style={styles.button}>
+          <Text style={styles.buttonText}>Atualizar Valores</Text>
+        </TouchableOpacity>
+      </View>
 
       <Text>
         Variação Imóveis:{" "}
