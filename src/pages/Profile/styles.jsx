@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
       backgroundColor: "green",
       width: 150,
       padding: 10,
-      justifyContent: "flex-start",
+      alignItems: 'center',
     },
     sidebarButton: {
       paddingVertical: 10,
@@ -18,13 +18,22 @@ const styles = StyleSheet.create({
     },
     sidebarButtonText: {
       fontSize: 16,
-      color: 'white'
+      color: 'white',
     },
     logo: {
         width: 100,
         height: 100,
-        resizeMode: "contain", // Ajusta a imagem ao tamanho do componente
+        resizeMode: "contain", 
         margin: 10,
+      },
+      sidebarImage: {
+        
+        width: 100,
+        height: 100,
+        marginBottom: 20,
+        marginTop:10,
+        alignItems: "center",
+        
       },
   });
 
