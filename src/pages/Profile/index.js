@@ -25,58 +25,23 @@ export default function Profile() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => handleNavigation("Visitantes")}
+          onPress={() => handleNavigation("Visitas")}
         >
-          <Text style={styles.sidebarButtonText}>Visitantes</Text>
+          <Text style={styles.sidebarButtonText}>Visitas</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => handleNavigation("Moradores")}
+          onPress={() => handleNavigation("Reservas")}
         >
-          <Text style={styles.sidebarButtonText}>Moradores</Text>
+          <Text style={styles.sidebarButtonText}>Reservas</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => handleNavigation("Prestadores")}
+          onPress={() => handleNavigation("Ocorrência")}
         >
-          <Text style={styles.sidebarButtonText}>Prestadores</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Ocorrencia")}
-        >
-          <Text style={styles.sidebarButtonText}>Ocorrências</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Imoveis")}
-        >
-          <Text style={styles.sidebarButtonText}>Imóveis</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Veiculos")}
-        >
-          <Text style={styles.sidebarButtonText}>Veículos</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Cameras")}
-        >
-          <Text style={styles.sidebarButtonText}>Câmeras</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("EntradasSaidas")}
-        >
-          <Text style={styles.sidebarButtonText}>Entradas e Saídas</Text>
+          <Text style={styles.sidebarButtonText}>Ocorrência</Text>
         </TouchableOpacity>
       </View>
     </View>
