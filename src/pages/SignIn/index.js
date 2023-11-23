@@ -109,7 +109,14 @@ export default function SignIn() {
           style={styles.button}
           onPress={() => navigation.navigate("Profile")}
         >
-          <Text style={styles.buttonText}>Avançar</Text>
+          <Text style={styles.buttonText}>Porteiro</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Morador")}
+        >
+          <Text style={styles.buttonText}>Tela Morador</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
