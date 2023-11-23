@@ -5,23 +5,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff", // Cor de fundo da tela
+    backgroundColor: "#fff", 
   },
   bottomButtonsContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     position: "absolute",
-    bottom: 20, // Ajuste conforme necessário
+    bottom: 20, 
     width: "100%",
+    backgroundColor: "green", 
+    paddingVertical: 10, 
   },
   bottomButton: {
-    backgroundColor: "green", // Cor de fundo do botão
     padding: 10,
     borderRadius: 5,
   },
   bottomButtonText: {
-    color: "#fff", // Cor do texto do botão
+    color: "#fff", 
     fontWeight: "bold",
   },
 });

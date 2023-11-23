@@ -4,7 +4,8 @@ import SignIn from "../pages/SignIn";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
 import PainelScreen from "../pages/Profile/Telas/PainelScreen";
-import MoradorScreen from "../pages/Morador"; // Ajuste do nome do arquivo e caminho
+import MoradorScreen from "../pages/Morador";
+import ConvidarScreen from "../pages/Morador/Telas/ConvidarScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function Routes() {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Morador" component={MoradorScreen} />
       <Stack.Screen name="PainelScreen" component={PainelScreen} />
+      <Stack.Screen name="ConvidarScreen" component={ConvidarScreen} />
     </Stack.Navigator>
   );
 }
