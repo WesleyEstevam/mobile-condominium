@@ -25,7 +25,7 @@ export default function Profile() {
 
         <TouchableOpacity
           style={styles.sidebarButton}
-          onPress={() => handleNavigation("Visitas")}
+          onPress={() => handleNavigation("VisitasScreen")}
         >
           <Text style={styles.sidebarButtonText}>Visitas</Text>
         </TouchableOpacity>
