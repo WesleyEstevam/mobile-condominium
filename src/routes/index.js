@@ -7,6 +7,8 @@ import PainelScreen from "../pages/Profile/Telas/PainelScreen";
 import MoradorScreen from "../pages/Morador";
 import ConvidarScreen from "../pages/Morador/Telas/ConvidarScreen";
 
+import HistoricoScreen from "../pages/Morador/Telas/HistoricoScreen";
+
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
@@ -19,6 +21,7 @@ export default function Routes() {
       <Stack.Screen name="Morador" component={MoradorScreen} />
       <Stack.Screen name="PainelScreen" component={PainelScreen} />
       <Stack.Screen name="ConvidarScreen" component={ConvidarScreen} />
+      <Stack.Screen name="HistoricoScreen" component={HistoricoScreen} />
     </Stack.Navigator>
   );
 }

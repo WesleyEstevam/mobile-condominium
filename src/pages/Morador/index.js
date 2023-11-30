@@ -19,7 +19,7 @@ export default function MoradorScreen() {
       >
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => handleNavigation("Historico")}
+          onPress={() => handleNavigation("HistoricoScreen")}
         >
           <Icon name="hourglass" size={50} color="white" />
         </TouchableOpacity>
