@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   View,
   Text,
@@ -9,8 +10,10 @@ import {
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
+import { baseURL } from "../../api/baseURL";
 
 export default function SignIn() {
+
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +25,7 @@ export default function SignIn() {
     setShowPassword(!showPassword);
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     setEmailError("");
     setPasswordError("");
 
@@ -36,6 +39,24 @@ export default function SignIn() {
 
     if (!emailError && !passwordError) {
     }
+
+    const response = await axios.get(baseURL + "login/" + email + "/" + password);
+
+    if(response.status === 200 && response.data != ''){
+      console.log(response);
+      const user = response.data;
+      
+      if(user.role === "Porteiro"){
+        navigation.navigate("Profile");
+      } else {
+        navigation.navigate("Morador");
+      }
+
+    } else {
+      setEmailError("E-mail inválido");
+      setPasswordError("Senha inválida");
+    }
+    
   };
 
   return (
@@ -105,7 +126,7 @@ export default function SignIn() {
           <Text style={styles.goBackButtonText}>Voltar ao início</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/*<TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Profile")}
         >
@@ -117,7 +138,7 @@ export default function SignIn() {
           onPress={() => navigation.navigate("Morador")}
         >
           <Text style={styles.buttonText}>Tela Morador</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </Animatable.View>
     </View>
   );

@@ -6,9 +6,12 @@ import {
   FlatList,
   TextInput,
   Button,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
+import * as Animatable from "react-native-animatable";
 
 import styles from "../HistoricoScreen/style";
 
@@ -87,117 +90,142 @@ export default function HistoricoScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Picker
-        selectedValue={filtroTipo}
-        onValueChange={(itemValue) => {
-          setFiltroTipo(itemValue);
-          setFiltroData({ dia: "1", mes: "1", ano: "2000" });
-          setMostrarListaDia(false);
-          setMostrarListaMes(false);
-          setMostrarListaAno(false);
-        }}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <Animatable.View
+        animation="fadeInLeft"
+        delay={600}
+        style={styles.containerHeader}
       >
-        <Picker.Item label="Filtrar por todos" value="todos" />
-        <Picker.Item label="Filtrar por data" value="data" />
-        <Picker.Item label="Filtrar por nome" value="nome" />
-      </Picker>
+        <Text style={styles.message}>Histórico</Text>
+      </Animatable.View>
 
-      {filtroTipo === "data" && (
-        <View>
-          <TouchableOpacity
-            onPress={() => setMostrarListaDia(!mostrarListaDia)}
-            style={{ ...buttonStyle, backgroundColor: "green" }}
-          >
-            <Text style={{ color: "white" }}>{`Dia: ${filtroData.dia}`}</Text>
-          </TouchableOpacity>
-          {mostrarListaDia && (
-            <Picker
-              selectedValue={filtroData.dia}
-              onValueChange={(itemValue) =>
-                setFiltroData((prevState) => ({ ...prevState, dia: itemValue }))
-              }
+      <View style={styles.containerForm}>
+        <Picker
+          selectedValue={filtroTipo}
+          onValueChange={(itemValue) => {
+            setFiltroTipo(itemValue);
+            setFiltroData({ dia: "1", mes: "1", ano: "2000" });
+            setMostrarListaDia(false);
+            setMostrarListaMes(false);
+            setMostrarListaAno(false);
+          }}
+        >
+          <Picker.Item label="Filtrar por todos" value="todos" />
+          <Picker.Item label="Filtrar por data" value="data" />
+          <Picker.Item label="Filtrar por nome" value="nome" />
+        </Picker>
+
+        {filtroTipo === "data" && (
+          <View>
+            <TouchableOpacity
+              onPress={() => setMostrarListaDia(!mostrarListaDia)}
+              style={{ ...buttonStyle, backgroundColor: "green" }}
             >
-              {diasDoMes.map((item, index) => (
-                <Picker.Item
-                  label={item.label}
-                  value={item.value}
-                  key={index}
-                />
-              ))}
-            </Picker>
-          )}
+              <Text style={{ color: "white" }}>{`Dia: ${filtroData.dia}`}</Text>
+            </TouchableOpacity>
+            {mostrarListaDia && (
+              <Picker
+                selectedValue={filtroData.dia}
+                onValueChange={(itemValue) =>
+                  setFiltroData((prevState) => ({
+                    ...prevState,
+                    dia: itemValue,
+                  }))
+                }
+              >
+                {diasDoMes.map((item, index) => (
+                  <Picker.Item
+                    label={item.label}
+                    value={item.value}
+                    key={index}
+                    style={styles.pickerItem}
+                  />
+                ))}
+              </Picker>
+            )}
 
-          <TouchableOpacity
-            onPress={() => setMostrarListaMes(!mostrarListaMes)}
-            style={{ ...buttonStyle, backgroundColor: "green" }}
-          >
-            <Text style={{ color: "white" }}>{`Mês: ${
-              mesesDoAno.find((m) => m.value === filtroData.mes)?.label
-            }`}</Text>
-          </TouchableOpacity>
-          {mostrarListaMes && (
-            <Picker
-              selectedValue={filtroData.mes}
-              onValueChange={(itemValue) =>
-                setFiltroData((prevState) => ({ ...prevState, mes: itemValue }))
-              }
+            <TouchableOpacity
+              onPress={() => setMostrarListaMes(!mostrarListaMes)}
+              style={{ ...buttonStyle, backgroundColor: "green" }}
             >
-              {mesesDoAno.map((item, index) => (
-                <Picker.Item
-                  label={item.label}
-                  value={item.value}
-                  key={index}
-                />
-              ))}
-            </Picker>
-          )}
+              <Text style={{ color: "white" }}>{`Mês: ${
+                mesesDoAno.find((m) => m.value === filtroData.mes)?.label
+              }`}</Text>
+            </TouchableOpacity>
+            {mostrarListaMes && (
+              <Picker
+                selectedValue={filtroData.mes}
+                onValueChange={(itemValue) =>
+                  setFiltroData((prevState) => ({
+                    ...prevState,
+                    mes: itemValue,
+                  }))
+                }
+              >
+                {mesesDoAno.map((item, index) => (
+                  <Picker.Item
+                    label={item.label}
+                    value={item.value}
+                    key={index}
+                    style={styles.pickerItem}
+                  />
+                ))}
+              </Picker>
+            )}
 
-          <TouchableOpacity
-            onPress={() => setMostrarListaAno(!mostrarListaAno)}
-            style={{ ...buttonStyle, backgroundColor: "green" }}
-          >
-            <Text style={{ color: "white" }}>{`Ano: ${filtroData.ano}`}</Text>
-          </TouchableOpacity>
-          {mostrarListaAno && (
-            <Picker
-              selectedValue={filtroData.ano}
-              onValueChange={(itemValue) =>
-                setFiltroData((prevState) => ({ ...prevState, ano: itemValue }))
-              }
+            <TouchableOpacity
+              onPress={() => setMostrarListaAno(!mostrarListaAno)}
+              style={{ ...buttonStyle, backgroundColor: "green" }}
             >
-              {anosDisponiveis.map((item, index) => (
-                <Picker.Item
-                  label={item.label}
-                  value={item.value}
-                  key={index}
-                />
-              ))}
-            </Picker>
-          )}
-        </View>
-      )}
-
-      {filtroTipo === "nome" && (
-        <TextInput
-          placeholder="Pesquisar por nome"
-          value={filtroNome}
-          onChangeText={(text) => setFiltroNome(text)}
-          style={styles.input}
-        />
-      )}
-
-      <Button title="Filtrar" onPress={handleFiltrar} style={buttonStyle} />
-
-      <FlatList
-        data={historico}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text>{`Nome: ${item.nome}, Data: ${item.data}`}</Text>
+              <Text style={{ color: "white" }}>{`Ano: ${filtroData.ano}`}</Text>
+            </TouchableOpacity>
+            {mostrarListaAno && (
+              <Picker
+                selectedValue={filtroData.ano}
+                onValueChange={(itemValue) =>
+                  setFiltroData((prevState) => ({
+                    ...prevState,
+                    ano: itemValue,
+                  }))
+                }
+              >
+                {anosDisponiveis.map((item, index) => (
+                  <Picker.Item
+                    label={item.label}
+                    value={item.value}
+                    key={index}
+                    style={styles.pickerItem}
+                  />
+                ))}
+              </Picker>
+            )}
           </View>
         )}
-      />
-    </View>
+
+        {filtroTipo === "nome" && (
+          <TextInput
+            placeholder="Pesquisar por nome"
+            value={filtroNome}
+            onChangeText={(text) => setFiltroNome(text)}
+            style={styles.input}
+          />
+        )}
+
+        <Button title="Filtrar" onPress={handleFiltrar} style={buttonStyle} />
+
+        <FlatList
+          data={historico}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.itemContainer}>
+              <Text>{`Nome: ${item.nome}, Data: ${item.data}`}</Text>
+            </View>
+          )}
+        />
+      </View>
+    </KeyboardAvoidingView>
   );
 }

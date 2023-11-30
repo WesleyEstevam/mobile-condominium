@@ -24,6 +24,20 @@ const styles = StyleSheet.create({
       padding: 8,
       marginBottom: 8,
     },
+    containerHeader: {
+      marginTop: "10%",
+      marginBottom: "2%",
+      paddingStart: "5%",
+      alignItems: "flex-start",
+      backgroundColor: "green", 
+    },
+    message: {
+      fontSize: 28,
+      fontWeight: "bold",
+      color: "#fff",
+      marginTop: 20,
+      marginLeft: 20,
+    },
     
   });
 
