@@ -11,9 +11,9 @@ import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import { baseURL } from "../../api/baseURL";
+import MoradorScreen from "../Morador";
 
 export default function SignIn() {
-
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -40,23 +40,23 @@ export default function SignIn() {
     if (!emailError && !passwordError) {
     }
 
-    const response = await axios.get(baseURL + "login/" + email + "/" + password);
+    const response = await axios.get(
+      baseURL + "login/" + email + "/" + password
+    );
 
-    if(response.status === 200 && response.data != ''){
+    if (response.status === 200 && response.data != "") {
       console.log(response);
       const user = response.data;
-      
-      if(user.role === "Porteiro"){
+
+      if (user.role === "Porteiro") {
         navigation.navigate("Profile");
       } else {
         navigation.navigate("Morador");
       }
-
     } else {
       setEmailError("E-mail inválido");
       setPasswordError("Senha inválida");
     }
-    
   };
 
   return (
@@ -104,7 +104,10 @@ export default function SignIn() {
         </TouchableOpacity>
 
         <View style={styles.bottomButtonsContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("Morador")}
+          >
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
 
@@ -126,7 +129,7 @@ export default function SignIn() {
           <Text style={styles.goBackButtonText}>Voltar ao início</Text>
         </TouchableOpacity>
 
-        {/*<TouchableOpacity
+        <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Profile")}
         >
@@ -138,7 +141,7 @@ export default function SignIn() {
           onPress={() => navigation.navigate("Morador")}
         >
           <Text style={styles.buttonText}>Tela Morador</Text>
-        </TouchableOpacity>*/}
+        </TouchableOpacity>
       </Animatable.View>
     </View>
   );

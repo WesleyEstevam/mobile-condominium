@@ -115,7 +115,7 @@ export default function HistoricoScreen() {
         >
           <Picker.Item label="Filtrar por todos" value="todos" />
           <Picker.Item label="Filtrar por data" value="data" />
-          <Picker.Item label="Filtrar por nome" value="nome" />
+          <Picker.Item label="Filtrar por letra" value="nome" />
         </Picker>
 
         {filtroTipo === "data" && (
