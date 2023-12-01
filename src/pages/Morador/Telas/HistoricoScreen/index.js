@@ -1,3 +1,4 @@
+// Importações necessárias
 import React, { useState } from "react";
 import {
   View,
@@ -10,8 +11,9 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Picker } from "@react-native-picker/picker";
+import SegmentedControlTab from "react-native-segmented-control-tab";
 import * as Animatable from "react-native-animatable";
+import { Picker } from "@react-native-picker/picker";
 
 import styles from "../HistoricoScreen/style";
 
@@ -34,6 +36,7 @@ export default function HistoricoScreen() {
   const [mostrarListaDia, setMostrarListaDia] = useState(false);
   const [mostrarListaMes, setMostrarListaMes] = useState(false);
   const [mostrarListaAno, setMostrarListaAno] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const diasDoMes = [...Array(31).keys()].map((item) => ({
     label: `${item + 1}`,
@@ -103,26 +106,32 @@ export default function HistoricoScreen() {
       </Animatable.View>
 
       <View style={styles.containerForm}>
-        <Picker
-          selectedValue={filtroTipo}
-          onValueChange={(itemValue) => {
-            setFiltroTipo(itemValue);
+        {/* Nova Barra de Seleção */}
+        <SegmentedControlTab
+          values={["Todos", "Data", "Nome"]}
+          selectedIndex={selectedIndex}
+          onTabPress={(index) => {
+            setSelectedIndex(index);
+            setFiltroTipo(
+              index === 0 ? "todos" : index === 1 ? "data" : "nome"
+            );
             setFiltroData({ dia: "1", mes: "1", ano: "2000" });
             setMostrarListaDia(false);
             setMostrarListaMes(false);
             setMostrarListaAno(false);
           }}
-        >
-          <Picker.Item label="Filtrar por todos" value="todos" />
-          <Picker.Item label="Filtrar por data" value="data" />
-          <Picker.Item label="Filtrar por letra" value="nome" />
-        </Picker>
+        />
 
         {filtroTipo === "data" && (
           <View>
             <TouchableOpacity
               onPress={() => setMostrarListaDia(!mostrarListaDia)}
-              style={{ ...buttonStyle, backgroundColor: "green" }}
+              style={{
+                ...buttonStyle,
+                backgroundColor: "green",
+                padding: 10,
+                marginTop: 10,
+              }}
             >
               <Text style={{ color: "white" }}>{`Dia: ${filtroData.dia}`}</Text>
             </TouchableOpacity>
@@ -135,6 +144,7 @@ export default function HistoricoScreen() {
                     dia: itemValue,
                   }))
                 }
+                style={{ height: 50, width: 200, color: "black" }}
               >
                 {diasDoMes.map((item, index) => (
                   <Picker.Item
@@ -149,7 +159,12 @@ export default function HistoricoScreen() {
 
             <TouchableOpacity
               onPress={() => setMostrarListaMes(!mostrarListaMes)}
-              style={{ ...buttonStyle, backgroundColor: "green" }}
+              style={{
+                ...buttonStyle,
+                backgroundColor: "green",
+                padding: 10,
+                marginTop: 10,
+              }}
             >
               <Text style={{ color: "white" }}>{`Mês: ${
                 mesesDoAno.find((m) => m.value === filtroData.mes)?.label
@@ -164,6 +179,7 @@ export default function HistoricoScreen() {
                     mes: itemValue,
                   }))
                 }
+                style={{ height: 50, width: 200, color: "black" }}
               >
                 {mesesDoAno.map((item, index) => (
                   <Picker.Item
@@ -178,7 +194,12 @@ export default function HistoricoScreen() {
 
             <TouchableOpacity
               onPress={() => setMostrarListaAno(!mostrarListaAno)}
-              style={{ ...buttonStyle, backgroundColor: "green" }}
+              style={{
+                ...buttonStyle,
+                backgroundColor: "green",
+                padding: 10,
+                marginTop: 10,
+              }}
             >
               <Text style={{ color: "white" }}>{`Ano: ${filtroData.ano}`}</Text>
             </TouchableOpacity>
@@ -191,6 +212,7 @@ export default function HistoricoScreen() {
                     ano: itemValue,
                   }))
                 }
+                style={{ height: 50, width: 200, color: "black" }}
               >
                 {anosDisponiveis.map((item, index) => (
                   <Picker.Item
@@ -210,7 +232,7 @@ export default function HistoricoScreen() {
             placeholder="Pesquisar por nome"
             value={filtroNome}
             onChangeText={(text) => setFiltroNome(text)}
-            style={styles.input}
+            style={{ ...styles.input, marginTop: 10 }}
           />
         )}
 
