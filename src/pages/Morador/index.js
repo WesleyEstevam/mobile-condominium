@@ -33,7 +33,7 @@ export default function MoradorScreen() {
 
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => handleNavigation("Alerta")}
+          onPress={() => handleNavigation("OcorrenciaScreen")}
         >
           <Icon name="warning" size={50} color="white" />
         </TouchableOpacity>
