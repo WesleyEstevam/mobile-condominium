@@ -12,6 +12,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import styles from "../ConvidarScreen/style";
+import axios from "axios";
+import { baseURL } from "../../../../api/baseURL";
 
 export default function ConvidarScreen() {
   const navigation = useNavigation();
@@ -32,7 +34,7 @@ export default function ConvidarScreen() {
   const [documentoExampleVisible, setDocumentoExampleVisible] = useState(true);
 
   const handleSave = () => {
-    if (!apartamento || !telefone || !nomeConvidado || !documento) {
+    {/*if (!apartamento || !telefone || !nomeConvidado || !documento) {
       Alert.alert("Preencha todos os campos corretamente");
       return;
     }
@@ -45,7 +47,15 @@ export default function ConvidarScreen() {
     if (documento.length !== 14) {
       Alert.alert("Preencha o campo de documento corretamente");
       return;
+    }*/}
+
+    let visitanteObj = {
+      "nomePessoa":nomeConvidado,
+      "documento":documento,
+      "nomeTipo":'visitante'
     }
+    
+    axios.post(baseURL + "visitante", visitanteObj);
 
     console.log("Apartamento:", apartamento);
     console.log("Complemento:", complemento);
