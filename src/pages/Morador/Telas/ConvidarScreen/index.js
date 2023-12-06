@@ -34,27 +34,12 @@ export default function ConvidarScreen() {
   const [documentoExampleVisible, setDocumentoExampleVisible] = useState(true);
 
   const handleSave = () => {
-    {/*if (!apartamento || !telefone || !nomeConvidado || !documento) {
-      Alert.alert("Preencha todos os campos corretamente");
-      return;
-    }
-
-    if (telefone.length !== 11) {
-      Alert.alert("Preencha o campo de telefone corretamente");
-      return;
-    }
-
-    if (documento.length !== 14) {
-      Alert.alert("Preencha o campo de documento corretamente");
-      return;
-    }*/}
-
     let visitanteObj = {
-      "nomePessoa":nomeConvidado,
-      "documento":documento,
-      "nomeTipo":'visitante'
-    }
-    
+      nomePessoa: nomeConvidado,
+      documento: documento,
+      nomeTipo: "visitante",
+    };
+
     axios.post(baseURL + "visitante", visitanteObj);
 
     console.log("Apartamento:", apartamento);

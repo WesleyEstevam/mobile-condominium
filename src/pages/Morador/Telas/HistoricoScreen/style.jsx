@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     borderWidth: 1,
     borderColor: "#ccc",
-    padding: 12, 
+    padding: 12,
     marginBottom: 16,
   },
   containerHeader: {
@@ -40,10 +40,7 @@ const styles = StyleSheet.create({
   },
   pickerItem: {
     fontSize: 16,
-  },
-  pickerItem: {
-    fontSize: 16,
-    color: 'black', 
+    color: "black",
   },
 });
 
