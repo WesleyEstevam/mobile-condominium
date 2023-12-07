@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  PermissionsAndroid,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./styles";
+import Icon from "react-native-vector-icons/AntDesign";
+import MoradorStyles from "../Morador/style";
 import sidebarImage from "../../assets/LOGO_TRANSPARENTE.png";
+import { RNCamera } from "react-native-camera";
 
 export default function Profile() {
   const navigation = useNavigation();
@@ -11,37 +18,48 @@ export default function Profile() {
     navigation.navigate(screenName);
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.sidebar}>
-        <Image source={sidebarImage} style={styles.sidebarImage} />
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "Permissão de Câmera",
+          message: "Precisamos da sua permissão para acessar a câmera",
+          buttonNeutral: "Pergunte-me depois",
+          buttonNegative: "Cancelar",
+          buttonPositive: "OK",
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        navigation.navigate("CameraScreen");
+      } else {
+        console.log("Permissão de câmera negada");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
+  return (
+    <View style={MoradorStyles.container}>
+      <View
+        style={[
+          MoradorStyles.bottomButtonsContainer,
+          { backgroundColor: "green" },
+        ]}
+      >
         <TouchableOpacity
-          style={styles.sidebarButton}
+          style={MoradorStyles.bottomButton}
           onPress={() => handleNavigation("PainelScreen")}
         >
-          <Text style={styles.sidebarButtonText}>Painel</Text>
+          <Icon name="profile" size={50} color="white" />
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("VisitasScreen")}
+          style={MoradorStyles.bottomButton}
+          onPress={requestCameraPermission}
         >
-          <Text style={styles.sidebarButtonText}>Visitas</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Reservas")}
-        >
-          <Text style={styles.sidebarButtonText}>Reservas</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.sidebarButton}
-          onPress={() => handleNavigation("Ocorrência")}
-        >
-          <Text style={styles.sidebarButtonText}>Ocorrência</Text>
+          <Icon name="camerao" size={50} color="white" />
         </TouchableOpacity>
       </View>
     </View>
