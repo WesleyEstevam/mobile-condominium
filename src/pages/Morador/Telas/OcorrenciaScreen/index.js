@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import styles from "../ConvidarScreen/style";
+import styles from "../OcorrenciaScreen/style";
 
 export default function OcorrenciaScreen() {
   const navigation = useNavigation();

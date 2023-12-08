@@ -16,7 +16,7 @@ export default function Register() {
   const [selectedOption, setSelectedOption] = useState("Morador");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const options = ["Morador", "Funcionário"];
+  const options = ["Morador", "Funcionário", "Condomínio"];
 
   const handleRepeatPasswordChange = (text) => {
     setRepeatPassword(text);
@@ -83,59 +83,128 @@ export default function Register() {
             ))}
           </View>
 
-          <Text style={styles.title}>Nome Completo</Text>
-          <TextInput placeholder="Registrar" style={styles.input} />
+          {/* Renderização condicional baseada na opção selecionada */}
+          {selectedOption === "Morador" && (
+            <>
+              <Text style={styles.title}>Nome Completo</Text>
+              <TextInput placeholder="Seu nome completo" style={styles.input} />
 
-          <Text style={styles.title}>Documento</Text>
-          <TextInput
-            placeholder="Registrar"
-            style={styles.input}
-            keyboardType="numeric"
-          />
+              <Text style={styles.title}>Email</Text>
+              <TextInput placeholder="nome@email.com" style={styles.input} />
 
-          <Text style={styles.title}>Empresa</Text>
-          <TextInput placeholder="Ifood" style={styles.input} />
+              <Text style={styles.title}>Código do Condomínio</Text>
+              <TextInput
+                placeholder="Insira o código aqui"
+                style={styles.input}
+              />
 
-          <Text style={styles.title}>Nome do Pai</Text>
-          <TextInput placeholder="Sr. Antonio" style={styles.input} />
+              <Text style={styles.title}>Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
 
-          <Text style={styles.title}>Nome da Mãe</Text>
-          <TextInput placeholder="Sra. Maria" style={styles.input} />
+              <Text style={styles.title}>Repetir Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={handleRepeatPasswordChange}
+                value={repeatPassword}
+              />
 
-          <Text style={styles.title}>Email</Text>
-          <TextInput placeholder="nome@email.com" style={styles.input} />
+              {passwordError ? (
+                <Text style={styles.errorText}>{passwordError}</Text>
+              ) : null}
+            </>
+          )}
 
-          <Text style={styles.title}>Quadra</Text>
-          <TextInput placeholder="Ex: 10" style={styles.input} />
+          {selectedOption === "Funcionário" && (
+            <>
+              <Text style={styles.title}>Nome Completo</Text>
+              <TextInput placeholder="Seu nome completo" style={styles.input} />
 
-          <Text style={styles.title}>Lote</Text>
-          <TextInput placeholder="Ex: 2" style={styles.input} />
+              <Text style={styles.title}>Empresa</Text>
+              <TextInput placeholder="Nome da Empresa" style={styles.input} />
 
-          <Text style={styles.title}>Nome </Text>
-          <TextInput placeholder="" style={styles.input} />
+              <Text style={styles.title}>Código do Condomínio</Text>
+              <TextInput
+                placeholder="Insira o código aqui"
+                style={styles.input}
+              />
 
-          <Text style={styles.title}>Apartamento</Text>
-          <TextInput placeholder="Ex: 105" style={styles.input} />
+              <Text style={styles.title}>Email</Text>
+              <TextInput placeholder="nome@email.com" style={styles.input} />
 
-          <Text style={styles.title}>Senha</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
+              <Text style={styles.title}>Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
 
-          <Text style={styles.title}>Repetir Senha</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry={true}
-            onChangeText={handleRepeatPasswordChange}
-            value={repeatPassword}
-          />
+              <Text style={styles.title}>Repetir Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={handleRepeatPasswordChange}
+                value={repeatPassword}
+              />
+              {passwordError ? (
+                <Text style={styles.errorText}>{passwordError}</Text>
+              ) : null}
+            </>
+          )}
 
-          {passwordError ? (
-            <Text style={styles.errorText}>{passwordError}</Text>
-          ) : null}
+          {selectedOption === "Condomínio" && (
+            <>
+              <Text style={styles.title}>Nome do Condomínio</Text>
+              <TextInput
+                placeholder="Nome do Condomínio"
+                style={styles.input}
+              />
+
+              <Text style={styles.title}>Empresa Responsável</Text>
+              <TextInput
+                placeholder="Nome da Empresa Responsável"
+                style={styles.input}
+              />
+
+              <Text style={styles.title}>Endereço</Text>
+              <TextInput
+                placeholder="Endereço do Condomínio"
+                style={styles.input}
+              />
+
+              <Text style={styles.title}>CEP</Text>
+              <TextInput
+                placeholder="CEP"
+                style={styles.input}
+                keyboardType="numeric"
+              />
+
+              <Text style={styles.title}>Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+
+              <Text style={styles.title}>Repetir Senha</Text>
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={handleRepeatPasswordChange}
+                value={repeatPassword}
+              />
+              {passwordError ? (
+                <Text style={styles.errorText}>{passwordError}</Text>
+              ) : null}
+            </>
+          )}
 
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Cadastrar</Text>

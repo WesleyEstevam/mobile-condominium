@@ -34,6 +34,13 @@ export default function ConvidarScreen() {
   const [documentoExampleVisible, setDocumentoExampleVisible] = useState(true);
 
   const handleSave = () => {
+    // Verifica se todos os campos obrigatórios estão preenchidos
+    if (!apartamento || !telefone || !nomeConvidado || !documento) {
+      Alert.alert("Erro", "Preencha todos os campos corretamente!");
+      return;
+    }
+
+    // Restante do seu código para salvar os dados
     let visitanteObj = {
       nomePessoa: nomeConvidado,
       documento: documento,

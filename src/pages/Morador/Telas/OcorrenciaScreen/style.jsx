@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "green",
     width: "100%",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "stretch",
   },
   containerHeader: {
     marginTop: "10%",
@@ -23,19 +23,20 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     backgroundColor: "white",
-    flex: 8,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingStart: "5%",
     paddingEnd: "5%",
     width: "100%",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
+    alignItems: "left",
+    paddingBottom: "50%",
   },
-  title: {
-    fontSize: 20,
-    marginTop: 28,
-    marginBottom: 10,
+  inputContainer: {
+    // Adapte conforme necessário
+    marginTop: 20,
+  },
+  inputWrapper: {
+    // Adapte conforme necessário
   },
   input: {
     borderBottomWidth: 1,
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 4,
     paddingVertical: 8,
+    marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -56,10 +58,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-  },
-  characterCount: {
-    alignSelf: "flex-end",
-    color: "#777",
+    marginBottom: 10,
   },
   label: {
     marginTop: 30,
@@ -67,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export default commonStyles;

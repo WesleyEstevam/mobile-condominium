@@ -1,13 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
+   container: {
     flex: 1,
     backgroundColor: "green",
     width: "100%",
-    justifyContent: "left", 
-    alignItems: "left", 
-    
+    justifyContent: "flex-start",
+    alignItems: "stretch",
   },
   containerHeader: {
     marginTop: "10%",
@@ -25,13 +24,14 @@ const styles = StyleSheet.create({
   },
   containerForm: {
     backgroundColor: "white",
-    flex: 8,
+    flex: 2,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingStart: "5%",
     paddingEnd: "5%",
     width: "100%",
-    alignItems: "left", 
+    alignItems: "left",
+    paddingBottom: '15%',
     
   },
   title: {

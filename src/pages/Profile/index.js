@@ -1,63 +1,36 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  PermissionsAndroid,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
-import MoradorStyles from "../Morador/style";
-import sidebarImage from "../../assets/LOGO_TRANSPARENTE.png";
-import { RNCamera } from "react-native-camera";
 
-export default function Profile() {
+import styles from "../Profile/styles";
+
+export default function ProfileScreen() {
   const navigation = useNavigation();
 
   const handleNavigation = (screenName) => {
     navigation.navigate(screenName);
   };
 
-  const requestCameraPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-        {
-          title: "Permissão de Câmera",
-          message: "Precisamos da sua permissão para acessar a câmera",
-          buttonNeutral: "Pergunte-me depois",
-          buttonNegative: "Cancelar",
-          buttonPositive: "OK",
-        }
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        navigation.navigate("CameraScreen");
-      } else {
-        console.log("Permissão de câmera negada");
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
   return (
-    <View style={MoradorStyles.container}>
+    <View style={styles.container}>
       <View
-        style={[
-          MoradorStyles.bottomButtonsContainer,
-          { backgroundColor: "green" },
-        ]}
+        style={[styles.bottomButtonsContainer, { backgroundColor: "green" }]}
       >
         <TouchableOpacity
-          style={MoradorStyles.bottomButton}
+          style={styles.bottomButton}
           onPress={() => handleNavigation("PainelScreen")}
         >
-          <Icon name="profile" size={50} color="white" />
+          <Icon name="book" size={50} color="white" />
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={MoradorStyles.bottomButton}
-          onPress={requestCameraPermission}
+          style={styles.bottomButton}
+          onPress={() => {
+            // Código para abrir a câmera aqui
+            // Pode usar bibliotecas como react-native-camera para isso
+            // Certifique-se de instalar a biblioteca antes de usar
+          }}
         >
           <Icon name="camerao" size={50} color="white" />
         </TouchableOpacity>

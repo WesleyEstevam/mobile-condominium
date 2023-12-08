@@ -11,7 +11,6 @@ import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import { baseURL } from "../../api/baseURL";
-import MoradorScreen from "../Morador";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -106,7 +105,7 @@ export default function SignIn() {
         <View style={styles.bottomButtonsContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Profile")}
+            onPress={() => navigation.navigate("Morador")}
           >
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
