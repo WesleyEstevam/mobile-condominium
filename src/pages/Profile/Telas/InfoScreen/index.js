@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import styles from "../OcorrenciaScreen/style";
+import styles from "../InfoScreen/style";
 
-export default function OcorrenciaScreen() {
+export default function InfoScreen() {
   const navigation = useNavigation();
   const [tipoOcorrencia, setTipoOcorrencia] = useState("");
   const [descricaoOcorrencia, setDescricaoOcorrencia] = useState("");
@@ -44,7 +44,7 @@ export default function OcorrenciaScreen() {
           delay={600}
           style={styles.containerHeader}
         >
-          <Text style={styles.message}>Ocorrência</Text>
+          <Text style={styles.message}>Informações</Text>
         </Animatable.View>
 
         <View style={styles.containerForm}>
@@ -57,7 +57,9 @@ export default function OcorrenciaScreen() {
                 onChangeText={(text) => setTipoOcorrencia(text)}
                 onFocus={() => setTipoOcorrenciaExampleVisible(false)}
                 onBlur={() => setTipoOcorrenciaExampleVisible(true)}
-                placeholder="Furto, briga, etc"
+                placeholder={
+                  tipoOcorrenciaExampleVisible ? "Ex: Furto, Batida, Briga" : ""
+                }
               />
             </View>
           </View>
@@ -88,7 +90,6 @@ export default function OcorrenciaScreen() {
                 onChangeText={(text) => setIdentificacao(text)}
                 onFocus={() => setTipoOcorrenciaExampleVisible(false)}
                 onBlur={() => setTipoOcorrenciaExampleVisible(true)}
-                placeholder="Nome, apartamento"
               />
             </View>
           </View>

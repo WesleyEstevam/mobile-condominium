@@ -6,7 +6,6 @@ import Profile from "../pages/Profile";
 import PainelScreen from "../pages/Profile/Telas/PainelScreen";
 import MoradorScreen from "../pages/Morador";
 import ConvidarScreen from "../pages/Morador/Telas/ConvidarScreen";
-import VisitasScreen from "../pages/Profile/Telas/VisitasScreen";
 import HistoricoScreen from "../pages/Morador/Telas/HistoricoScreen";
 import OcorrenciaScreen from "../pages/Morador/Telas/OcorrenciaScreen";
 
@@ -22,7 +21,6 @@ export default function Routes() {
       <Stack.Screen name="Morador" component={MoradorScreen} />
       <Stack.Screen name="PainelScreen" component={PainelScreen} />
       <Stack.Screen name="ConvidarScreen" component={ConvidarScreen} />
-      <Stack.Screen name="VisitasScreen" component={VisitasScreen} />
       <Stack.Screen name="HistoricoScreen" component={HistoricoScreen} />
       <Stack.Screen name="OcorrenciaScreen" component={OcorrenciaScreen} />
     </Stack.Navigator>

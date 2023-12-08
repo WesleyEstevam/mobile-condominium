@@ -21,6 +21,13 @@ export default function ProfileScreen() {
           style={styles.bottomButton}
           onPress={() => handleNavigation("PainelScreen")}
         >
+          <Icon name="folder1" size={50} color="white" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.bottomButton}
+          onPress={() => handleNavigation("InfoScreen")}
+        >
           <Icon name="book" size={50} color="white" />
         </TouchableOpacity>
 
