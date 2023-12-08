@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     sidebarButton: {
       paddingVertical: 10,
       borderBottomWidth: 1,
-      borderBottomColor: "#ccc",
+      borderBottomColor: "green",
     },
     sidebarButtonText: {
       fontSize: 16,
