@@ -16,7 +16,7 @@ export default function Register() {
   const [selectedOption, setSelectedOption] = useState("Morador");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const options = ["Morador", "Funcionário", "Condomínio"];
+  const options = ["Morador", "Funcionário"];
 
   const handleRepeatPasswordChange = (text) => {
     setRepeatPassword(text);
@@ -136,54 +136,6 @@ export default function Register() {
 
               <Text style={styles.title}>Email</Text>
               <TextInput placeholder="nome@email.com" style={styles.input} />
-
-              <Text style={styles.title}>Senha</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry={!showPassword}
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-              />
-
-              <Text style={styles.title}>Repetir Senha</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={handleRepeatPasswordChange}
-                value={repeatPassword}
-              />
-              {passwordError ? (
-                <Text style={styles.errorText}>{passwordError}</Text>
-              ) : null}
-            </>
-          )}
-
-          {selectedOption === "Condomínio" && (
-            <>
-              <Text style={styles.title}>Nome do Condomínio</Text>
-              <TextInput
-                placeholder="Nome do Condomínio"
-                style={styles.input}
-              />
-
-              <Text style={styles.title}>Empresa Responsável</Text>
-              <TextInput
-                placeholder="Nome da Empresa Responsável"
-                style={styles.input}
-              />
-
-              <Text style={styles.title}>Endereço</Text>
-              <TextInput
-                placeholder="Endereço do Condomínio"
-                style={styles.input}
-              />
-
-              <Text style={styles.title}>CEP</Text>
-              <TextInput
-                placeholder="CEP"
-                style={styles.input}
-                keyboardType="numeric"
-              />
 
               <Text style={styles.title}>Senha</Text>
               <TextInput
