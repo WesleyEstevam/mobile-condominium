@@ -20,27 +20,29 @@ import styles from "../HistoricoScreen/style";
 import { baseURL } from "../../../../api/baseURL";
 import axios from "axios";
 
-{/*const historicoData = [
-  { id: 1, nome: "João", data: "28-11-2023" },
-  { id: 2, nome: "Maria", data: "27-11-2023" },
-];*/}
-
 export default function HistoricoScreen() {
   const navigation = useNavigation();
 
-  const [historico, setHistorico] = useState({});
+  const [historico, setHistorico] = useState([]);
+  const [historicoOriginal, setHistoricoOriginal] = useState([]);
   const [filtroTipo, setFiltroTipo] = useState("todos");
   const [filtroData, setFiltroData] = useState({});
   const [filtroNome, setFiltroNome] = useState("");
   const [mostrarDatePicker, setMostrarDatePicker] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  axios.get(baseURL + "visitante").then((response) => {
-      const historicoData = response.data;
-      setHistorico(historicoData);
-  }).catch((e) => {
-    console.error(e);
-  });
+  useEffect(() => {
+    axios
+      .get(baseURL + "visitante")
+      .then((response) => {
+        const historicoData = response.data;
+        setHistoricoOriginal(historicoData);
+        setHistorico(historicoData);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
 
   const diasDoMes = [...Array(31).keys()].map((item) => ({
     label: `${item + 1}`,
@@ -71,17 +73,17 @@ export default function HistoricoScreen() {
   );
 
   const handleFiltrar = () => {
-    let historicoFiltrado = [...historico];
+    let historicoFiltrado = [...historicoOriginal];
 
     if (filtroTipo === "data") {
       historicoFiltrado = historicoFiltrado.filter((item) => {
-        const [ano, mes, dia] = item.data.split("-");
+        const [ano, mes, dia] = item.dtCadastro.split("-");
         const dataItem = `${ano}-${mes}-${dia}`;
         return dataItem === filtroData.dateString;
       });
     } else if (filtroTipo === "nome" && filtroNome.trim() !== "") {
       historicoFiltrado = historicoFiltrado.filter((item) =>
-        item.nome.toLowerCase().includes(filtroNome.toLowerCase())
+        item.nomePessoa.toLowerCase().includes(filtroNome.toLowerCase())
       );
     }
 
@@ -154,7 +156,9 @@ export default function HistoricoScreen() {
           keyExtractor={(item) => item.idPessoa}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
-              <Text>{`Nome: ${item.nomePessoa}, Data: ${new Date(item.dtCadastro).toLocaleDateString()}`}</Text>
+              <Text>{`Nome: ${item.nomePessoa}, Data: ${new Date(
+                item.dtCadastro
+              ).toLocaleDateString()}`}</Text>
             </View>
           )}
         />

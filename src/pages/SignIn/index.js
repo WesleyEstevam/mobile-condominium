@@ -103,10 +103,7 @@ export default function SignIn() {
         </TouchableOpacity>
 
         <View style={styles.bottomButtonsContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Profile")}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleSignIn}>
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
 
