@@ -40,7 +40,7 @@ export default function ProfileScreen() {
           }}
         >
           <Icon name="camerao" size={50} color="white" />
-        </TouchableOpacity>
+      </TouchableOpacity>
       </View>
     </View>
   );

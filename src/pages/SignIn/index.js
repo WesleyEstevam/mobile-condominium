@@ -105,7 +105,7 @@ export default function SignIn() {
         <View style={styles.bottomButtonsContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Profile")}
+            onPress={handleSignIn}
           >
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
@@ -121,7 +121,7 @@ export default function SignIn() {
           </Text>
         </View>
 
-        <TouchableOpacity
+        {/*<TouchableOpacity
           style={styles.goBackButton}
           onPress={() => navigation.navigate("Welcome")}
         >
@@ -140,7 +140,7 @@ export default function SignIn() {
           onPress={() => navigation.navigate("Morador")}
         >
           <Text style={styles.buttonText}>Tela Morador</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </Animatable.View>
     </View>
   );
