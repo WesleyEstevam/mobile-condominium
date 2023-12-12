@@ -1,3 +1,4 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Welcome from "../pages/Welcome";
 import SignIn from "../pages/SignIn";
@@ -8,6 +9,7 @@ import MoradorScreen from "../pages/Morador";
 import ConvidarScreen from "../pages/Morador/Telas/ConvidarScreen";
 import HistoricoScreen from "../pages/Morador/Telas/HistoricoScreen";
 import OcorrenciaScreen from "../pages/Morador/Telas/OcorrenciaScreen";
+import InfoScreen from "../pages/Profile/Telas/InfoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,7 @@ export default function Routes() {
       <Stack.Screen name="ConvidarScreen" component={ConvidarScreen} />
       <Stack.Screen name="HistoricoScreen" component={HistoricoScreen} />
       <Stack.Screen name="OcorrenciaScreen" component={OcorrenciaScreen} />
+      <Stack.Screen name="InfoScreen" component={InfoScreen} />
     </Stack.Navigator>
   );
 }

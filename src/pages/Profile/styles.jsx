@@ -25,6 +25,25 @@ const styles = StyleSheet.create({
     color: "#fff", 
     fontWeight: "bold",
   },
+  informationsContainer: {
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+  },
+  informationLabel: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  informationText: {
+    fontSize: 16,
+    marginBottom: 15,
+  },
+  informationTextBold: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
 export default styles;

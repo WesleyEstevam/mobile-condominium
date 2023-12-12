@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import styles from "../InfoScreen/style";
+import styles from "../InfoScreen/styles";
 
 export default function InfoScreen() {
   const navigation = useNavigation();
@@ -28,9 +28,12 @@ export default function InfoScreen() {
       return;
     }
 
-    console.log("Tipo de Ocorrência:", tipoOcorrencia);
-    console.log("Descrição da Ocorrência:", descricaoOcorrencia);
-    console.log("Identificação:", identificacao);
+    // Navegar para Profile e passar os valores como parâmetros
+    navigation.navigate("Profile", {
+      tipoOcorrencia,
+      descricaoOcorrencia,
+      identificacao,
+    });
   };
 
   return (
@@ -58,7 +61,9 @@ export default function InfoScreen() {
                 onFocus={() => setTipoOcorrenciaExampleVisible(false)}
                 onBlur={() => setTipoOcorrenciaExampleVisible(true)}
                 placeholder={
-                  tipoOcorrenciaExampleVisible ? "Ex: Furto, Batida, Briga" : ""
+                  tipoOcorrenciaExampleVisible
+                    ? "Ex: Reunião, Manutenção, etc"
+                    : ""
                 }
               />
             </View>
