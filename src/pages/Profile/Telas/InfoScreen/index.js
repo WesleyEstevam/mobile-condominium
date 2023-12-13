@@ -28,7 +28,6 @@ export default function InfoScreen() {
       return;
     }
 
-    // Navegar para Profile e passar os valores como parâmetros
     navigation.navigate("Profile", {
       tipoOcorrencia,
       descricaoOcorrencia,

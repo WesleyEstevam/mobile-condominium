@@ -12,7 +12,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import styles from "../OcorrenciaScreen/style";
-//import styles from "../ConvidarScreen/style";
 import axios from "axios";
 import { baseURL } from "../../../../api/baseURL";
 
@@ -32,17 +31,20 @@ export default function OcorrenciaScreen() {
     }
 
     const ocorrenciaData = {
-      "nomePorteiro": "seu Zé",
-      "descOcorrencia": descricaoOcorrencia,
-      "descTipoOcorrencia": tipoOcorrencia,
-      "descStatusOcorrencia": "Em andamento"
-    }
+      nomePorteiro: "seu Zé",
+      descOcorrencia: descricaoOcorrencia,
+      descTipoOcorrencia: tipoOcorrencia,
+      descStatusOcorrencia: "Em andamento",
+    };
 
-    axios.post(baseURL + "ocorrencia",ocorrenciaData).then((response) => {
-      console.log(response);
-    }).catch((e) => {
-      console.error(e);
-    })
+    axios
+      .post(baseURL + "ocorrencia", ocorrenciaData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
 
     console.log("Tipo de Ocorrência:", tipoOcorrencia);
     console.log("Descrição da Ocorrência:", descricaoOcorrencia);

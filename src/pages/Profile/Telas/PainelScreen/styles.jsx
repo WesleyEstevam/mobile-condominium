@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     paddingEnd: "5%",
     width: "100%",
     alignItems: "left",
-    paddingTop: 20, // Ajuste do espaçamento no topo
+    paddingTop: 20, 
   },
   title: {
     fontSize: 20,
@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
     height: 30,
     marginBottom: 20,
     fontSize: 16,
-    width: "100%", // Take the full width
+    width: "100%", 
   },
   button: {
     backgroundColor: "green",
     width: "100%",
-    borderRadius: 10, // Ajuste do raio da borda
-    paddingVertical: 12, // Ajuste do espaçamento vertical
-    marginTop: 20, // Ajuste do espaçamento no topo
+    borderRadius: 10,
+    paddingVertical: 12, 
+    marginTop: 20, 
     justifyContent: "center",
     alignItems: "center",
   },

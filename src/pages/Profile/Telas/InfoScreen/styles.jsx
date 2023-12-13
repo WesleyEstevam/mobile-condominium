@@ -32,11 +32,11 @@ const commonStyles = StyleSheet.create({
     paddingBottom: "115%",
   },
   inputContainer: {
-    // Adapte conforme necessário
+   
     marginTop: 20,
   },
   inputWrapper: {
-    // Adapte conforme necessário
+    
   },
   input: {
     borderBottomWidth: 1,

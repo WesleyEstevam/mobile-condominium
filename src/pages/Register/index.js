@@ -20,7 +20,6 @@ export default function Register() {
   const [codCondominio, setCodCondominio] = useState("");
   const [empresa, setEmpresa] = useState("");
 
-
   const options = ["Morador", "Funcionário"];
 
   const handleRepeatPasswordChange = (text) => {
@@ -37,7 +36,7 @@ export default function Register() {
     axios
       .get(`${baseURL}login`)
       .then((response) => {
-        console.log("register:")
+        console.log("register:");
         console.log(response.data);
       })
       .catch((error) => {
@@ -49,7 +48,7 @@ export default function Register() {
   const handleRegister = () => {
     let tipoCadastro = selectedOption;
 
-    if(tipoCadastro == "Morador"){
+    if (tipoCadastro == "Morador") {
       tipoCadastro = "morador";
     } else if (tipoCadastro == "Funcionário") {
       tipoCadastro = "prestador";
@@ -59,46 +58,48 @@ export default function Register() {
       nomePessoa: nomeCompleto,
       empresa: empresa,
       email: email,
-	    quadra: "01",
-	    lote: "01",
-	    bloco: "A",
-	    apartamento: codCondominio,
-	    nomeTipo: tipoCadastro,
-	    documento: "010203"
-    }
+      quadra: "01",
+      lote: "01",
+      bloco: "A",
+      apartamento: codCondominio,
+      nomeTipo: tipoCadastro,
+      documento: "010203",
+    };
 
     const payloadLogin = {
       nomeUsuario: email,
       senha: password,
-      role: tipoCadastro
-    }
+      role: tipoCadastro,
+    };
 
     if (tipoCadastro == "morador") {
-      axios.post(baseURL + "morador", payloadRegister)
+      axios
+        .post(baseURL + "morador", payloadRegister)
         .then(() => {
-          console.log("Morador cadastrado com sucesso!")
+          console.log("Morador cadastrado com sucesso!");
         })
         .catch((e) => {
           console.error(e);
         });
     } else {
-      axios.post(baseURL + "prestador", payloadRegister)
+      axios
+        .post(baseURL + "prestador", payloadRegister)
         .then(() => {
-          console.log("Funcionário cadastrado com sucesso!")
+          console.log("Funcionário cadastrado com sucesso!");
         })
         .catch((e) => {
           console.error(e);
         });
     }
 
-    axios.post(baseURL + "login/novoUsuario", payloadLogin)
+    axios
+      .post(baseURL + "login/novoUsuario", payloadLogin)
       .then(() => {
-        console.log("Login cadastrado com sucesso!")
+        console.log("Login cadastrado com sucesso!");
       })
       .catch((e) => {
         console.error(e);
       });
-
   };
 
   return (
@@ -125,7 +126,7 @@ export default function Register() {
                 style={[
                   styles.segmentedControlItem,
                   option === selectedOption &&
-                  styles.segmentedControlItemSelected,
+                    styles.segmentedControlItemSelected,
                 ]}
                 onPress={() => {
                   setSelectedOption(option);
@@ -135,7 +136,7 @@ export default function Register() {
                   style={[
                     styles.segmentedControlText,
                     option === selectedOption &&
-                    styles.segmentedControlTextSelected,
+                      styles.segmentedControlTextSelected,
                   ]}
                 >
                   {option}
@@ -144,7 +145,6 @@ export default function Register() {
             ))}
           </View>
 
-          {/* Renderização condicional baseada na opção selecionada */}
           {selectedOption === "Morador" && (
             <>
               <Text style={styles.title}>Nome Completo</Text>

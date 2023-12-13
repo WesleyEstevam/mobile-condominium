@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import styles from "../PainelScreen/styles"; // Importe o estilo do segundo componente
+import styles from "../PainelScreen/styles";
 
 export default function PainelScreen() {
   const navigation = useNavigation();

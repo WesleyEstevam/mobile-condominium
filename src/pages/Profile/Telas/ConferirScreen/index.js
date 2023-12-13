@@ -20,16 +20,13 @@ export default function ConferirScreen() {
 
   const handleAnalisar = async () => {
     try {
-      // Fazer a validação do documento com o banco de dados
       const response = await axios.get(
         baseURL + `visitante/${documentoConvidado}`
       );
 
       if (response.data) {
-        // Documento encontrado
         setResultadoValidacao("Entrada Autorizada");
       } else {
-        // Documento não encontrado
         setResultadoValidacao("Entrada Não Autorizada");
       }
     } catch (error) {

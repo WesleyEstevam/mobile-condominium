@@ -14,7 +14,7 @@ const MoradorScreen = () => {
 
   return (
     <ImageBackground
-      source={require("../../assets/LOGO.gif")} // Substitua pelo caminho real do seu LOGO.gif
+      source={require("../../assets/LOGO.gif")}
       style={styles.container}
     >
       <View style={styles.bottomButtonsContainer}>

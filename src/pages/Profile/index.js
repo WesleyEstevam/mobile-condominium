@@ -14,11 +14,9 @@ export default function ProfileScreen() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  // Obter os parâmetros passados
   const { tipoOcorrencia, descricaoOcorrencia, identificacao, timestamp } =
     route.params || {};
 
-  // Estado para armazenar os formulários preenchidos
   const [respostas, setRespostas] = useState([]);
 
   const handleNavigation = (screenName) => {
@@ -26,7 +24,6 @@ export default function ProfileScreen() {
   };
 
   useEffect(() => {
-    // Adicione o formulário atual à lista quando a tela for montada
     if (tipoOcorrencia && descricaoOcorrencia && identificacao) {
       setRespostas((prevRespostas) => [
         {
@@ -35,7 +32,7 @@ export default function ProfileScreen() {
           identificacao,
           timestamp,
         },
-        ...prevRespostas, // Mantenha os formulários antigos
+        ...prevRespostas,
       ]);
     }
   }, [tipoOcorrencia, descricaoOcorrencia, identificacao, timestamp]);
@@ -43,7 +40,7 @@ export default function ProfileScreen() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={respostas.slice().reverse()} // Criar uma cópia antes de reverter
+        data={respostas.slice().reverse()}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View
@@ -66,7 +63,6 @@ export default function ProfileScreen() {
 
             <Text style={styles.informationTextBold}>{item.identificacao}</Text>
 
-            {/* Adicione um campo para exibir a data/hora do formulário */}
             <Text style={styles.informationText}>{item.timestamp}</Text>
           </View>
         )}
@@ -75,7 +71,7 @@ export default function ProfileScreen() {
       <View
         style={[
           styles.bottomButtonsContainer,
-          { backgroundColor: "green", zIndex: 1 }, // Adicionando zIndex
+          { backgroundColor: "green", zIndex: 1 },
         ]}
       >
         <TouchableOpacity
