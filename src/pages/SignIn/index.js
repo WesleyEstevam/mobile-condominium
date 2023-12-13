@@ -47,10 +47,10 @@ export default function SignIn() {
       console.log(response);
       const user = response.data;
 
-      if (user.role === "Porteiro") {
-        navigation.navigate("Profile");
-      } else {
+      if (user.role === "morador" || user.role === "Morador") {
         navigation.navigate("Morador");
+      } else {
+        navigation.navigate("Profile");
       }
     } else {
       setEmailError("E-mail inválido");
