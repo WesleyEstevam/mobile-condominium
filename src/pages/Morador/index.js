@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Button } from "react-native";
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 
 import styles from "../Morador/style";
 
-export default function MoradorScreen() {
+const MoradorScreen = () => {
   const navigation = useNavigation();
 
   const handleNavigation = (screenName) => {
@@ -13,15 +13,17 @@ export default function MoradorScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View
-        style={[styles.bottomButtonsContainer, { backgroundColor: "green" }]}
-      >
+    <ImageBackground
+      source={require("../../assets/LOGO.gif")} // Substitua pelo caminho real do seu LOGO.gif
+      style={styles.container}
+    >
+      <View style={styles.bottomButtonsContainer}>
         <TouchableOpacity
           style={styles.bottomButton}
           onPress={() => handleNavigation("HistoricoScreen")}
         >
           <Icon name="hourglass" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Histórico</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -29,6 +31,7 @@ export default function MoradorScreen() {
           onPress={() => handleNavigation("ConvidarScreen")}
         >
           <Icon name="upload" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Convidar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -36,8 +39,11 @@ export default function MoradorScreen() {
           onPress={() => handleNavigation("OcorrenciaScreen")}
         >
           <Icon name="warning" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Ocorrência</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
-}
+};
+
+export default MoradorScreen;

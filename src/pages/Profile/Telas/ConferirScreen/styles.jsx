@@ -29,7 +29,7 @@ const commonStyles = StyleSheet.create({
     paddingEnd: "5%",
     width: "100%",
     alignItems: "left",
-    paddingBottom: "115%",
+    paddingBottom: "50%",
   },
   inputContainer: {
     // Adapte conforme necessário

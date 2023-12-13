@@ -83,6 +83,7 @@ export default function ProfileScreen() {
           onPress={() => handleNavigation("PainelScreen")}
         >
           <Icon name="folder1" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Painel</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -90,16 +91,16 @@ export default function ProfileScreen() {
           onPress={() => handleNavigation("InfoScreen")}
         >
           <Icon name="book" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Info</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.bottomButton}
-          onPress={() => {
-            // Faça algo ao pressionar o terceiro botão
-          }}
+          onPress={() => handleNavigation("ConferirScreen")}
         >
-          <Icon name="camerao" size={50} color="white" />
-      </TouchableOpacity>
+          <Icon name="addusergroup" size={50} color="white" />
+          <Text style={styles.bottomButtonText}>Conferir</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
