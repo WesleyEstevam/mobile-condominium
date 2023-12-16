@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -46,11 +46,23 @@ export default function Register() {
   }, []);
 
   const handleRegister = () => {
+    // Verifique se todos os campos obrigatórios estão preenchidos
+    if (
+      !nomeCompleto ||
+      !email ||
+      !codCondominio ||
+      !password ||
+      !repeatPassword
+    ) {
+      Alert.alert("Erro", "Preencha Todos os Campos Corretamente!");
+      return;
+    }
+
     let tipoCadastro = selectedOption;
 
-    if (tipoCadastro == "Morador") {
+    if (tipoCadastro === "Morador") {
       tipoCadastro = "morador";
-    } else if (tipoCadastro == "Funcionário") {
+    } else if (tipoCadastro === "Funcionário") {
       tipoCadastro = "prestador";
     }
 
@@ -72,11 +84,12 @@ export default function Register() {
       role: tipoCadastro,
     };
 
-    if (tipoCadastro == "morador") {
+    if (tipoCadastro === "morador") {
       axios
         .post(baseURL + "morador", payloadRegister)
         .then(() => {
           console.log("Morador cadastrado com sucesso!");
+          Alert.alert("Sucesso", "Cadastrado com Sucesso!");
         })
         .catch((e) => {
           console.error(e);
@@ -86,6 +99,7 @@ export default function Register() {
         .post(baseURL + "prestador", payloadRegister)
         .then(() => {
           console.log("Funcionário cadastrado com sucesso!");
+          Alert.alert("Sucesso", "Cadastrado com Sucesso!");
         })
         .catch((e) => {
           console.error(e);
